@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Roboto&display=swap");
+:root {
+  --theme: #20062e;
+  --blue: #18b2de;
+  --white: #fff;
+  --grey: #d7d7d7;
+  --purple: #8f8297;
+}
+body {
+  font-family: "Inter", sans-serif;
+  font-family: "Roboto", sans-serif;
+  background-color: var(--theme);
+  color: var(--white);
+}
+input {
+  font-family: "Inter", sans-serif;
+}
+.input-wrapper {
+  width: 78vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  margin-top: 4rem;
+}
+.input-wrapper h1 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+/* .input-wrapper p {
+  cursor: pointer;
+} */
+a {
+  text-decoration: none;
+}
+.card-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 0.5rem;
+  margin: 1.2rem;
+}
+.banner-wrapper {
+  background: linear-gradient(
+    152deg,
+    rgba(58, 129, 191, 0.3) 0%,
+    rgba(65, 48, 90, 0.01) 100%
+  );
+  border-radius: 2rem;
+  padding: 1rem;
+  width: 100%;
+  /* height: 300px; */
+  object-fit: cover;
+}
+.banner-wrapper img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  cursor: pointer;
+  border-radius: 0.8rem;
+}
+.card {
+  width: 330px;
+  height: 350px;
+  background: linear-gradient(
+    152deg,
+    rgba(58, 129, 191, 0.3) 0%,
+    rgba(65, 48, 90, 0.01) 100%
+  );
+  border-radius: 2rem;
+  padding: 1rem;
+  color: #3a81bf, #41305a08;
+  opacity: 0.7;
+}
+.card:hover {
+  opacity: 1;
+  transition: all 0.3s;
+}
+.display-image {
+  height: 240px;
+  width: 95%;
+  border: 1.5rem;
+}
+.title-card {
+  color: var(--white);
+  font-weight: 500;
+  font-size: large;
+}
+.description-card {
+  color: var(--white);
+}
+
+.podcast-title {
+  width: 100%;
+  text-align: left !important;
+}
+.podcast-description {
+  color: var(--purple);
+  text-align: left;
+  font-family: Inter;
+  font-size: 24px;
+  font-style: normal;
+  width: 100%;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.custom-button {
+    text-align: center;
+    padding: 1rem;
+    border: 2px solid white;
+    border-radius: 0.35rem;
+    cursor: pointer;
+    width: 15vw;
+    margin: 1rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}

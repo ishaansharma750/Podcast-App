@@ -1,0 +1,36 @@
+.navbar {
+  display: flex;
+  justify-content: center;
+  height: 60px;
+}
+.links {
+  width: 600px;
+  display: flex;
+  gap: 2rem;
+  font-size: larger;
+  align-items: center;
+  width: fit-content;
+}
+
+.links a {
+  color: #8ea6bb;
+  text-decoration: none !important;
+}
+.links a:hover {
+  color: var(--greu);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.gredient {
+  position: absolute;
+  width: 800px;
+  height: 120px;
+  margin: auto;
+  background: #18b2de;
+  filter: blur(100px);
+  z-index: -1;
+  top: -100px;
+}
+.active {
+  color: var(--white) !important;
+}
