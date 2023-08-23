@@ -11,7 +11,7 @@ const Podcasts = () => {
   const dispatch = useDispatch();
   const podcasts = useSelector((state) => state.podcasts.podcasts);
 
-  const [search,setSearch]  = useState("")
+  const [search, setSearch] = useState("");
 
   useEffect(() => {
     const unSubscribe = onSnapshot(
@@ -33,7 +33,7 @@ const Podcasts = () => {
     };
   }, [dispatch]);
   // console.log(podcasts);
-  let filterPodcasts = podcasts.filter((item)=>item.title.trim().toLowerCase().includes(search.trim().toLowerCase()))
+  let filterPodcasts = podcasts.filter((item) =>item.title.trim().toLowerCase().includes(search.trim().toLowerCase()));
 
   return (
     <div>
@@ -66,7 +66,9 @@ const Podcasts = () => {
             ))}
           </>
         ) : (
-          <p>{search ? "Podcasts Not Found": "No Podcasts On the Platform" } </p>
+          <p>
+            {search ? "Podcasts Not Found" : "No Podcasts On the Platform"}{" "}
+          </p>
         )}
       </div>
     </div>

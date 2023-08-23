@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../../slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import FileInput from "../../common/fileInput/FileInput";
 
 const SignUpForm = () => {
   let [name, setName] = useState("");
@@ -17,6 +18,11 @@ const SignUpForm = () => {
   let [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+
+const displayImageHnadle = (file) => {
+  setDisplayImage(file);
+};
 
   const handleSignup = async () => {
     setLoading(true)
@@ -95,9 +101,18 @@ const SignUpForm = () => {
         type={"password"}
         required={true}
       />
-      <Button text={loading? "Loading..." : "Signup"} disabled={loading} onClick={handleSignup} />
+      <FileInput
+        accept={"image/*"}
+        id={"display-image-input"}
+        fileHandle={displayImageHnadle}
+        text={"Profile Image"}
+      />
 
-     
+      <Button
+        text={loading ? "Loading..." : "Signup"}
+        disabled={loading}
+        onClick={handleSignup}
+      />
     </>
   );
 };
