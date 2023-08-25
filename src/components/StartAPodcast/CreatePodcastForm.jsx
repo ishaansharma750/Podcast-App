@@ -30,7 +30,7 @@ const CreatePodcastForm = () => {
         await uploadBytes(bannerImageRef, bannerImage);
 
         const bannerImageUrl = await getDownloadURL(bannerImageRef);
-        console.log("your image ", bannerImageUrl);
+        // console.log("your image ", podcstData);
 
         const displayImageRef = ref(
           storage,
