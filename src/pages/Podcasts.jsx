@@ -60,7 +60,6 @@ const Podcasts = () => {
                     alt="displayImage"
                   />
                   <p className="title-card">{item.title}</p>
-                  <p className="description-card">{item.description}</p>
                 </div>
               </Link>
             ))}

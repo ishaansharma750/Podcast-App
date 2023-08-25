@@ -35,7 +35,7 @@ const Profile = () => {
   }, [dispatch]);
 
   const user = useSelector((state) => state.user.user);
-  // console.log("my user",user)
+  console.log("my user", user);
   if (!user) {
     return <Loader />;
   }
@@ -54,17 +54,22 @@ const Profile = () => {
     <div>
       <Header />
       <div className="info-bar">
-        <h1 style={{margin: "1rem 1.2rem", width: "100%" }}>
-          Welcome - {user.name}
-        </h1>
+        <div className="info-text">
+          <h1 style={{ margin: "1rem 1.2rem", width: "100%" }}>
+            Welcome - {user.name}
+          </h1>
+        </div>
         <Button text={"Logout"} onClick={handleLogout} />
+      </div>
+      <div className="input-wrapper" style={{ margin: "1rem", width: "auto" }}>
+        <h1> Podcasts</h1>
       </div>
 
       <div className="card-container">
         {podcasts.length > 0 ? (
           <>
             {podcasts.map((item) => (
-              <div className="card">
+              <div key={item.id} className="card">
                 <img
                   className="display-image"
                   src={item.displayImage}
