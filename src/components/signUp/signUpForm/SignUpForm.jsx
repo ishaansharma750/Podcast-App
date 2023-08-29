@@ -9,11 +9,13 @@ import { setUser } from "../../../slices/userSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import FileInput from "../../common/fileInput/FileInput";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
 
 const SignUpForm = () => {
   let [name, setName] = useState("");
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");
+  let [displayImage, setDisplayImage] = useState();
   let [confirmPassword, setConfirmPassword] = useState("");
   let [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
@@ -26,9 +28,14 @@ const displayImageHnadle = (file) => {
 
   const handleSignup = async () => {
     setLoading(true)
-    if (password === confirmPassword && password.length >= 6) {
+    if (
+      password === confirmPassword &&
+      password.length >= 6 &&
+      name &&
+      email &&
+      displayImage
+    ) {
       try {
-        console.log("hhhihi");
         // Creating user Account into Firebase
         const userCredential = await createUserWithEmailAndPassword(
           auth,
@@ -38,27 +45,39 @@ const displayImageHnadle = (file) => {
         const user = userCredential.user;
         console.log(user);
 
-        // Saving user in Firebase
-        await setDoc(doc(db, "users", user.uid), {
+        const displayImageRef = ref(
+          storage,
+          `profile/${auth.currentUser.uid}/${Date.now()}`
+        );
+        await uploadBytes(displayImageRef, displayImage);
+
+        const displayImageUrl = await getDownloadURL(displayImageRef);
+
+        const userData = {
           name: name,
           email: user.email,
           uid: user.uid,
-        });
+          displayImageUrl: displayImageUrl,
+        };
+
+        // Saving user in Firebase
+        await setDoc(doc(db, "users", user.uid), userData);
         // save the data in redux, call the redux action
         dispatch(
           setUser({
             name: name,
             email: user.email,
             uid: user.uid,
+            displayImageUrl : displayImageUrl,
           })
         );
-        setLoading(false)
+        setLoading(false);
         toast.success("User Have been Created");
         navigate("/profile");
       } catch (err) {
         setLoading(false);
         console.log(err);
-        toast.error(err.message)
+        toast.error(err.message);
       }
     } else {
       if (password !== confirmPassword) {
@@ -67,7 +86,7 @@ const displayImageHnadle = (file) => {
       } else if (password.length < 6) {
         toast("Password Must be moe than 5 Character");
       }
-      setLoading(false)
+      setLoading(false);
     }
   };
 

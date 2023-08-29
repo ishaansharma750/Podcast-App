@@ -35,7 +35,7 @@ const Profile = () => {
   }, [dispatch]);
 
   const user = useSelector((state) => state.user.user);
-  console.log("my user", user);
+  // console.log("is user", user);
   if (!user) {
     return <Loader />;
   }
@@ -47,21 +47,23 @@ const Profile = () => {
       })
       .catch((error) => {
         toast.error("error.message");
+        console.log(error.message)
       });
   };
-  console.log(podcasts);
+  console.log(user);
   return (
     <div>
       <Header />
       <div className="info-bar">
         <div className="info-text">
-          <h1 style={{ margin: "1rem 1.2rem", width: "100%" }}>
+          <h1>
             Welcome - {user.name}
           </h1>
         </div>
+        <img className="info-img" src={user.displayImageUrl} width="80px" height="80px" />
         <Button text={"Logout"} onClick={handleLogout} />
       </div>
-      <div className="input-wrapper" style={{ margin: "1rem", width: "auto" }}>
+      <div className="input-wrapper">
         <h1> Podcasts</h1>
       </div>
 

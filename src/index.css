@@ -126,12 +126,18 @@ a {
   color: var(--purple);
 }
 
+.info-img{
+  border-radius:20px ;
+}
 
 
 
 
 .info-bar {
+  margin-top: 1rem;
+  /* border:2px solid white; */
   display: flex;
+  align-items:center ;
   justify-content: space-between;
   width: 100%;
 }

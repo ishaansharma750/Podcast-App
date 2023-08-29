@@ -15,13 +15,11 @@ import Podcasts from "./pages/Podcasts";
 import PodcastDetailPage from "./pages/PodcastDetailPage";
 import CreateEpisode from "./pages/CreateEpisode";
 
-
-
 const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const authUnsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
         const unSubscribeSnaopshot = onSnapshot(
           doc(db, "users", user.uid),
@@ -33,6 +31,7 @@ const App = () => {
                   name: userData.name,
                   email: userData.email,
                   uid: user.uid,
+                  displayImageUrl: userData.displayImageUrl,
                 })
               );
             }
@@ -46,6 +45,9 @@ const App = () => {
         };
       }
     });
+    return () => {
+      unsubscribeAuth();
+    };
   }, []);
 
   return (
@@ -58,7 +60,9 @@ const App = () => {
           <Route path="/create-podcast" element={<CreatePodcast />} />
           <Route path="/podcast" element={<Podcasts />} />
           <Route path="/podcast/:id" element={<PodcastDetailPage />} />
-          <Route path="/podcast/:id/create-episodes" element={<CreateEpisode />}
+          <Route
+            path="/podcast/:id/create-episodes"
+            element={<CreateEpisode />}
           />
         </Route>
       </Routes>
